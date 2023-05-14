@@ -1,0 +1,15 @@
+.form {
+  margin-top: 1rem;
+  padding: 10px 0;
+  display: flex;
+}
+
+.input {
+  padding: 5px 8px;
+  font-size: 1.2rem;
+}
+
+.submitBtn {
+  padding: 9px 1rem;
+  margin-left: 5px;
+}
