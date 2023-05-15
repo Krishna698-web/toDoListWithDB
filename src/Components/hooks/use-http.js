@@ -1,28 +1,38 @@
 import { useState } from "react";
 
-const useHttp = async (props) => {
-    const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState(null);
-    const [taskData, setTaskData] = useState([]);
+const useHttp = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const sendRequest = async (request, applyData) => {
+    setIsLoading(true);
+    setError(null);
     try {
-        const response = await fetch(props.url, {
-            method: props.method,
-            headers: props.headers,
-            body: props.body
-        });
+      const response = await fetch(request.url, {
+        method: request.method ? request.method : "GET",
+        headers: request.headers ? request.headers : {},
+        body: request.body ? JSON.stringify(request.body) : null,
+      });
 
-        if (!response.ok) {
-            throw new Error('Something went wrong!');
-        }
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
 
-        const data = await response.json();
-        setTaskData(data);
+      const data = await response.json();
+      applyData(data);
+
     } catch (error) {
-        setError(error.message);
-        throw new Error(`Error occured: ${error.message}`);
+      setError(error.message);
+      throw new Error(`Error occured: ${error.message}`);
     }
+    setIsLoading(false);
+  };
 
-    return taskData;
-}
+  return {
+    isLoading,
+    error,
+    sendRequest,
+  }
+};
 
 export default useHttp;
