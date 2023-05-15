@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const useHttp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const sendRequest = async (request, applyData) => {
+  const sendRequest = useCallback(async (request, applyData) => {
     setIsLoading(true);
     setError(null);
     try {
@@ -20,19 +20,18 @@ const useHttp = () => {
 
       const data = await response.json();
       applyData(data);
-
     } catch (error) {
       setError(error.message);
       throw new Error(`Error occured: ${error.message}`);
     }
     setIsLoading(false);
-  };
+  }, []);
 
   return {
     isLoading,
     error,
     sendRequest,
-  }
+  };
 };
 
 export default useHttp;

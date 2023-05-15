@@ -1,0 +1,15 @@
+.taskList {
+  background-color: white;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.task {
+  padding: 8px 2px;
+  font-size: 1.4rem;
+  color: #42275a;
+  font-weight: bold;
+  border: none;
+  border-bottom: 1px solid #734b6d;
+}

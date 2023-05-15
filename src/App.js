@@ -16,11 +16,7 @@ const App = () => {
     setTasks(loadedTasks);
   };
 
-  const {
-    isLoading,
-    error,
-    sendRequest: fetchData,
-  } = useHttp();
+  const { isLoading, error, sendRequest: fetchData } = useHttp();
 
   // const fetchData = async (taskText) => {
   //   setIsLoading(true);
@@ -28,13 +24,10 @@ const App = () => {
   //     const response = await fetch(
   //       "https://tasks-app-b0442-default-rtdb.firebaseio.com/tasks.json"
   //     );
-
   //     if (!response.ok) {
   //       throw new Error("Something went wrong!");
   //     }
-
   //     const data = await response.json();
-
   //   } catch (error) {
   //     setError(error.message);
   //     throw new Error(error.message);
@@ -43,9 +36,11 @@ const App = () => {
   // };
 
   useEffect(() => {
-    fetchData(    { url: "https://tasks-app-b0442-default-rtdb.firebaseio.com/tasks.json" },
-    transformTasks);
-  }, []);
+    fetchData(
+      { url: "https://tasks-app-b0442-default-rtdb.firebaseio.com/tasks.json" },
+      transformTasks
+    );
+  }, [fetchData]);
 
   const enteredTaskHandler = (task) => {
     setTasks((prevTask) => prevTask.concat(task));
