@@ -1,0 +1,43 @@
+.container {
+  width: 100%;
+  gap: 3rem;
+}
+
+.carousel_container {
+  background: whitesmoke;
+  position: relative;
+  height: 12rem;
+  max-width: 70%;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  /* background-color: black; */
+}
+
+.btn_container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  position: absolute;
+  top: 80%;
+}
+
+.forward_btn,
+.backward_btn {
+  height: 30px;
+  width: 30px;
+  z-index: 10;
+  box-shadow: 0 2px 1rem -7px black;
+}
+
+.forward_btn {
+  right: 0%;
+}
+
+.pauseButton,
+.playButton {
+  height: 6rem;
+  width: 7rem;
+}
